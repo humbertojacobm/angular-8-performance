@@ -1,0 +1,7 @@
+- 77% of mobile sites spend 10 seconds to load.
+- you can fix that with lazy loading.
+- angular tree shakable
+  - it is remove code that you are not using.
+  - Ivy is friendly with this. so webpack and other can work much better
+  - search that are friendly with tree shakable.
+  - 
