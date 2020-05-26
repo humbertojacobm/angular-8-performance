@@ -1,0 +1,2 @@
+Estrategia de carga selectiva
+
