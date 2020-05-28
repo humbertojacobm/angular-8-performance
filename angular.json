@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/platzi-store-perf",
             "index": "src/index.html",
@@ -33,7 +33,10 @@
               "./node_modules/swiper/dist/css/swiper.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "./extend.webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
