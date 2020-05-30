@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
+  lista1:string = "lista 1";
+  lista2:string = "lista 2";
   constructor() { }
 
   ngOnInit() {
