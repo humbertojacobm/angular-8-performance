@@ -5,6 +5,7 @@ import { GeneratorService } from 'src/app/core/services/generator.service';
 import { EmployeeData } from 'src/app/core/models/employee.model';
 import { Observable,
          Subscription } from 'rxjs';
+import {tap} from 'rxjs/operators'
 
 const names = ['nicolas','juan', 'felipe','maria'];
 
@@ -25,7 +26,11 @@ export class LayoutComponent implements OnInit,
   sub$: Subscription;
 
   constructor(private generatorService: GeneratorService) {
-    this.value$ = this.generatorService.getData();
+    this.value$ = this.generatorService.getData()
+    .pipe(
+      tap(num => console.log(num))
+    )
+    ;
   }
   ngOnDestroy(): void {
     console.log('destry');
