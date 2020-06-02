@@ -15,12 +15,18 @@ export class LayoutComponent implements OnInit {
   lista2:string = "lista 2";
   salesList:EmployeeData[]=[];
   bList: EmployeeData[]=[];
+  value: number;
 
   constructor(private generatorService: GeneratorService) { }
 
   ngOnInit() {
     this.salesList = this.generatorService.generate(names,[10,20],10);
     this.bList = this.generatorService.generate(names,[10,20],10);
+    this.generatorService.getData()
+    .subscribe(value => {
+      this.value = value;
+      console.log(this.value);
+    })
   }
 
   addItem(list:EmployeeData[], label: string ){
