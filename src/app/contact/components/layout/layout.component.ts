@@ -21,23 +21,25 @@ export class LayoutComponent implements OnInit,
   lista2:string = "lista 2";
   salesList:EmployeeData[]=[];
   bList: EmployeeData[]=[];
-  value: number;
+  value$: Observable<number>;
   sub$: Subscription;
 
-  constructor(private generatorService: GeneratorService) { }
+  constructor(private generatorService: GeneratorService) {
+    this.value$ = this.generatorService.getData();
+  }
   ngOnDestroy(): void {
     console.log('destry');
-    this.sub$.unsubscribe();
+    // this.sub$.unsubscribe();
   }
 
   ngOnInit() {
     this.salesList = this.generatorService.generate(names,[10,20],10);
     this.bList = this.generatorService.generate(names,[10,20],10);
-    this.sub$ = this.generatorService.getData()
-    .subscribe(value => {
-      this.value = value;
-      console.log(this.value);
-    });
+    // this.sub$ = this.generatorService.getData()
+    // .subscribe(value => {
+    //   this.value = value;
+    //   console.log(this.value);
+    // });
   }
 
   addItem(list:EmployeeData[], label: string ){
