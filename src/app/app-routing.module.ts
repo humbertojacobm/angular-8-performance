@@ -5,6 +5,9 @@ import { LayoutComponent } from './layout/layout.component';
 
 import { AdminGuard } from './admin.guard';
 
+import { PreloadService} from './core/services/preload.service';
+import { QuicklinkStrategy } from 'ngx-quicklink';
+
 const routes: Routes = [
   {
     path: '',
@@ -17,7 +20,8 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+        data: { preload: true}
       },
       {
         path: 'products',
@@ -25,7 +29,8 @@ const routes: Routes = [
       },
       {
         path: 'contact',
-        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule),
+        data: { preload: true}
       },
       {
         path: 'order',
@@ -39,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
@@ -54,7 +59,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
+    enableTracing: false,
+    preloadingStrategy: QuicklinkStrategy,
+    paramsInheritanceStrategy: 'always'
   })],
   exports: [RouterModule]
 })
